@@ -13,7 +13,7 @@ jobs:
         env:
           POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
         run: |
-          helm upgrade postgresql bitnami/postgresql --version 14.2.3 -n cubix --set auth.password="$env:POSTGRESQL_PASSWORD" -f values.yaml --install
+          helm upgrade postgresql bitnami/postgresql --version 14.2.3 --namespace cubix --set auth.password="$env:POSTGRESQL_PASSWORD" --values values.yaml --install --set image.repository=bitnamilegacy/postgresql --set volumePermissions.image.repository=bitnamilegacy/os-shell --set metrics.image.repository=bitnamilegacy/postgres-exporter --set global.security.allowInsecureImages=true
 # Swap commenting if your self-hosted agent is on Linux or on MacOS
 #  deploy-linux:
 #    runs-on: [self-hosted, linux, macOS]
@@ -23,4 +23,4 @@ jobs:
 #        env:
 #          POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
 #        run: |
-#          helm upgrade postgresql bitnami/postgresql --version 14.2.3 -n cubix --set auth.password="$POSTGRESQL_PASSWORD" -f values.yaml --install
+#          helm upgrade postgresql bitnami/postgresql --version 14.2.3 --namespace cubix --set auth.password="$POSTGRESQL_PASSWORD" --values values.yaml --install --set image.repository=bitnamilegacy/postgresql --set volumePermissions.image.repository=bitnamilegacy/os-shell --set metrics.image.repository=bitnamilegacy/postgres-exporter --set global.security.allowInsecureImages=true
