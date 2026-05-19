@@ -1,8 +1,8 @@
 name: Local deployment to Kind
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
-  workflow_dispatch: 
 
 jobs:
   deploy-windows:
